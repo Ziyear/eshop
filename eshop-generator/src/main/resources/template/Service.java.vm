@@ -1,0 +1,21 @@
+package ${servicepackage}.${moduleName}.service;
+
+import com.baomidou.mybatisplus.service.IService;
+##import ${mainPath}.common.utils.LayuiPage;
+import com.eshop.common.utils.LayuiPage;
+import ${entityPackage}.${moduleName}.entity.${className}Entity;
+
+import java.util.Map;
+
+/**
+ * ${comments}
+ *
+ * @author ${author}
+ * @email ${email}
+ * @date ${datetime}
+ */
+public interface ${className}Service extends IService<${className}Entity> {
+
+    LayuiPage queryPage(Map<String, Object> params);
+}
+

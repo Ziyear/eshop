@@ -7,7 +7,6 @@
         <artifactId>eshop</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <groupId>com.eshop</groupId>
     <artifactId>eshop-eureka-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>eshop-eureka-service</name>

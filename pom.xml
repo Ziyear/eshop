@@ -15,23 +15,23 @@
     <description>网上商城项目</description>
     <modules>
         <module>eshop-common</module>
-        <module>eshop-web</module>
-        <module>eshop-admin</module>
-        <module>eshop-super</module>
         <module>eshop-generator</module>
         <module>eshop-eureka-service</module>
-        <module>eshop-service-order</module>
-        <module>eshop-service-order-spi</module>
         <module>eshop-hystrix-service</module>
         <module>eshop-zuul-service</module>
+        <module>eshop-web</module>
+        <module>eshop-admin</module>
+        <module>eshop-store</module>
+        <module>eshop-service-order</module>
+        <module>eshop-service-order-spi</module>
         <module>eshop-service-statistic</module>
         <module>eshop-service-statistic-spi</module>
         <module>eshop-service-basic</module>
         <module>eshop-service-basic-spi</module>
         <module>eshop-service-member</module>
         <module>eshop-service-member-spi</module>
-        <module>eshop-service-shoppingcar</module>
-        <module>eshop-service-shoppingcar-spi</module>
+        <module>eshop-service-shoppingcart</module>
+        <module>eshop-service-shoppingcart-spi</module>
         <module>eshop-service-commodity</module>
         <module>eshop-service-commodity-spi</module>
         <module>eshop-service-sso</module>
@@ -54,11 +54,13 @@
         <servlet.version>3.1.0</servlet.version>
         <junit.version>4.12</junit.version>
         <shiro.version>1.4.0</shiro.version>
-        <druid.version>1.1.10</druid.version>
         <mybatisplus.version>2.3</mybatisplus.version>
         <mybatisplus.spring.boot.version>1.0.5</mybatisplus.spring.boot.version>
         <pagehelper.spring.boot.version>1.2.5</pagehelper.spring.boot.version>
         <mysql.version>5.1.38</mysql.version>
+        <sqlserver.version>4.0</sqlserver.version>
+        <oracle.version>11.2.0.3</oracle.version>
+        <druid.version>1.1.10</druid.version>
         <mybatis.generator.version>1.3.2</mybatis.generator.version>
         <commons.lang.version>2.6</commons.lang.version>
         <commons.fileupload.version>1.3.1</commons.fileupload.version>
@@ -99,6 +101,24 @@
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.version}</version>
+            </dependency>
+            <!-- oracle驱动 -->
+            <dependency>
+                <groupId>com.oracle</groupId>
+                <artifactId>ojdbc6</artifactId>
+                <version>${oracle.version}</version>
+            </dependency>
+            <!-- sqlserver驱动 -->
+            <dependency>
+                <groupId>com.microsoft.sqlserver</groupId>
+                <artifactId>sqljdbc4</artifactId>
+                <version>${sqlserver.version}</version>
+            </dependency>
+            <!-- postgresql驱动 -->
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${druid.version}</version>
             </dependency>
             <dependency>
                 <groupId>commons-fileupload</groupId>
@@ -150,6 +170,17 @@
                 <artifactId>zkclient</artifactId>
                 <version>${zkclient.version}</version>
             </dependency>
+            <!-- mybatis-plus依赖 -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus</artifactId>
+                <version>${mybatisplus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatisplus-spring-boot-starter</artifactId>
+                <version>${mybatisplus.spring.boot.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -198,15 +229,11 @@
             <artifactId>commons-io</artifactId>
             <version>${commons.io.version}</version>
         </dependency>
-
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.0</version>
         </dependency>
-
-
     </dependencies>
 
     <profiles>
@@ -279,7 +306,7 @@
                 <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
-                <eshop.version>1.1.2.RELEASE</eshop.version>
+                <eshop.version>0.0.1-SNAPSHOT</eshop.version>
             </properties>
             <dependencyManagement>
                 <dependencies>
@@ -290,12 +317,12 @@
                     </dependency>
                     <dependency>
                         <groupId>com.eshop</groupId>
-                        <artifactId>eshop-chatting</artifactId>
+                        <artifactId>eshop-super</artifactId>
                         <version>${eshop.version}</version>
                     </dependency>
                     <dependency>
                         <groupId>com.eshop</groupId>
-                        <artifactId>eshop-live</artifactId>
+                        <artifactId>eshop-web</artifactId>
                         <version>${eshop.version}</version>
                     </dependency>
                     <dependency>
@@ -304,36 +331,10 @@
                         <version>${eshop.version}</version>
                     </dependency>
                     <dependency>
-                        <groupId>com.eshop</groupId>
-                        <artifactId>eshop-datasources</artifactId>
-                        <version>${eshop.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>com.eshop</groupId>
-                        <artifactId>eshop-entity</artifactId>
-                        <version>${eshop.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>com.eshop</groupId>
-                        <artifactId>eshop-front</artifactId>
-                        <version>${eshop.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>com.eshop</groupId>
-                        <artifactId>eshop-service</artifactId>
-                        <version>${eshop.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>com.eshop</groupId>
-                        <artifactId>eshop-dao</artifactId>
-                        <version>${eshop.version}</version>
-                    </dependency>
-                    <dependency>
                         <groupId>org.apache.shiro</groupId>
                         <artifactId>shiro-all</artifactId>
                         <version>1.2.0</version>
                     </dependency>
-
                 </dependencies>
             </dependencyManagement>
         </profile>
