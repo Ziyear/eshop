@@ -1,44 +1,72 @@
 package com.eshop.generator.utils;
 
+import com.baomidou.mybatisplus.plugins.Page;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
  * 查询参数
+ *
  */
-public class Query extends LinkedHashMap<String, Object> {
+public class Query<T> extends LinkedHashMap<String, Object> {
 
     private static final long serialVersionUID = 1L;
-    //当前页码
-    private int page;
-    //每页条数
-    private int limit;
+    /**
+     * mybatis-plus分页参数
+     */
+    private Page<T> page;
+    /**
+     * 当前页码
+     */
+    private int currPage = 1;
+    /**
+     * 开始位置
+     */
+    private int offset;
+    /**
+     * 每页条数
+     */
+    private int limit = 10;
 
     public Query(Map<String, Object> params) {
         this.putAll(params);
 
         //分页参数
-        this.page = Integer.parseInt(params.get("page").toString());
-        this.limit = Integer.parseInt(params.get("limit").toString());
-        this.put("offset", (page - 1) * limit);
-        this.put("page", page);
+        if (params.get("page") != null) {
+            currPage = Integer.parseInt((String) params.get("page"));
+        }
+        if (params.get("limit") != null) {
+            limit = Integer.parseInt((String) params.get("limit"));
+        }
+
+        offset = (currPage - 1) * limit;
+        this.put("offset", offset);
+        this.put("page", currPage);
         this.put("limit", limit);
+
+        //mybatis-plus分页
+        this.page = new Page<>(currPage, limit);
+
     }
 
-
-    public int getPage() {
+    public Page<T> getPage() {
         return page;
     }
 
-    public void setPage(int page) {
-        this.page = page;
+    public Page<T> getPage(String orderByField, boolean isAsc) {
+        return new Page<>(currPage, limit, orderByField, isAsc);
+    }
+
+    public int getCurrPage() {
+        return currPage;
     }
 
     public int getLimit() {
         return limit;
     }
 
-    public void setLimit(int limit) {
-        this.limit = limit;
+    public int getOffset() {
+        return offset;
     }
 }

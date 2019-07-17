@@ -19,9 +19,8 @@ import ${entityPackage}.${moduleName}.excel.${className}Bean;
 import ${entityPackage}.${moduleName}.entity.${className}Entity;
 import ${servicepackage}.${moduleName}.service.${className}Service;
 ##import ${mainPath}.common.utils.LayuiPage;
-import com.eshop.common.utils.LayuiPage;
-import ${mainPath}.common.utils.ExcelUtils;
-import com.eshop.common.utils.ActionResult;
+import com.eshop.generator.utils.LayuiPage;
+import com.eshop.generator.utils.ActionResult;
 import io.swagger.annotations.ApiOperation;
 
 

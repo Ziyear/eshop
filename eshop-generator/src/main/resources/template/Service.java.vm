@@ -2,7 +2,7 @@ package ${servicepackage}.${moduleName}.service;
 
 import com.baomidou.mybatisplus.service.IService;
 ##import ${mainPath}.common.utils.LayuiPage;
-import com.eshop.common.utils.LayuiPage;
+import com.eshop.generator.utils.LayuiPage;
 import ${entityPackage}.${moduleName}.entity.${className}Entity;
 
 import java.util.Map;
