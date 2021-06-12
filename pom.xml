@@ -2,55 +2,48 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.6.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
+
     <groupId>com.eshop</groupId>
     <artifactId>eshop</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>eshop</name>
     <description>网上商城项目</description>
+    <packaging>pom</packaging>
     <modules>
         <module>eshop-common</module>
-        <module>eshop-generator</module>
-        <module>eshop-eureka-service</module>
-        <module>eshop-hystrix-service</module>
-        <module>eshop-zuul-service</module>
+        <module>eshop-getway</module>
         <module>eshop-web</module>
         <module>eshop-admin</module>
         <module>eshop-store</module>
-        <module>eshop-service-order</module>
-        <module>eshop-service-order-spi</module>
-        <module>eshop-service-statistic</module>
-        <module>eshop-service-statistic-spi</module>
-        <module>eshop-service-basic</module>
-        <module>eshop-service-basic-spi</module>
-        <module>eshop-service-member</module>
-        <module>eshop-service-member-spi</module>
-        <module>eshop-service-shoppingcart</module>
-        <module>eshop-service-shoppingcart-spi</module>
-        <module>eshop-service-commodity</module>
-        <module>eshop-service-commodity-spi</module>
-        <module>eshop-service-sso</module>
-        <module>eshop-service-sso-spi</module>
-        <module>eshop-service-stock</module>
-        <module>eshop-service-stock-spi</module>
-        <module>eshop-service-file</module>
-        <module>eshop-service-file-spi</module>
-        <module>eshop-service-mq</module>
-        <module>eshop-service-mq-spi</module>
-        <module>eshop-service-price</module>
-        <module>eshop-service-price-spi</module>
-        <module>eshop-service-risk</module>
-        <module>eshop-service-risk-spi</module>
+        <module>eshop-order</module>
+        <module>eshop-order-spi</module>
+        <module>eshop-shoppingcart</module>
+        <module>eshop-shoppingcart-spi</module>
+        <module>eshop-commodity</module>
+        <module>eshop-commodity-spi</module>
+        <module>eshop-sso</module>
+        <module>eshop-sso-client</module>
+        <module>eshop-sso-spi</module>
+        <module>eshop-stock</module>
+        <module>eshop-stock-spi</module>
+        <module>eshop-price</module>
+        <module>eshop-price-spi</module>
+        <module>eshop-risk</module>
+        <module>eshop-risk-spi</module>
     </modules>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <spring-cloud.version>Hoxton.SR3</spring-cloud.version>
+        <spring-boot.version>2.2.5.RELEASE</spring-boot.version>
+        <spring-cloud-alibaba.version>2.2.1.RELEASE</spring-cloud-alibaba.version>
+        <junit.version>4.12</junit.version>
+        <log4j.version>1.2.17</log4j.version>
+        <lombok.version>1.18.0</lombok.version>
         <servlet.version>3.1.0</servlet.version>
         <junit.version>4.13.1</junit.version>
         <shiro.version>1.4.0</shiro.version>
@@ -68,12 +61,11 @@
         <commons.codec.version>1.10</commons.codec.version>
         <fastjson.version>1.2.45</fastjson.version>
         <joda.time.version>2.9.9</joda.time.version>
-        <hutool.version>4.1.12</hutool.version>
-        <swagger.version>2.8.0</swagger.version>
+        <hutool.version>4.1.2</hutool.version>
+        <swagger.version>2.9.2</swagger.version>
         <dubbo.spring.boot.starter>2.0.0</dubbo.spring.boot.starter>
         <zkclient.version>0.9</zkclient.version>
         <fastdfs.version>1.27-SNAPSHOT</fastdfs.version>
-        <spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
         <quartz.version>2.3.0</quartz.version>
         <kaptcha.version>0.0.9</kaptcha.version>
         <easypoi.version>3.1.0</easypoi.version>
@@ -89,12 +81,35 @@
 
     <dependencyManagement>
         <dependencies>
+            <!--  springboot 2.2.5    -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--  springcloud Hoxton.SR3    -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
                 <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <!--  springcloud cloud alibaba 2.2.1.RELEASE    -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- dubbo-->
+            <dependency>
+                <groupId>com.alibaba.spring.boot</groupId>
+                <artifactId>dubbo-spring-boot-starter</artifactId>
+                <version>${dubbo.spring.boot.starter}</version>
             </dependency>
             <!-- mysql驱动  -->
             <dependency>
@@ -114,42 +129,43 @@
                 <artifactId>sqljdbc4</artifactId>
                 <version>${sqlserver.version}</version>
             </dependency>
-            <!-- postgresql驱动 -->
-            <dependency>
-                <groupId>org.postgresql</groupId>
-                <artifactId>postgresql</artifactId>
-                <version>${druid.version}</version>
-            </dependency>
+            <!-- 附件上传 -->
             <dependency>
                 <groupId>commons-fileupload</groupId>
                 <artifactId>commons-fileupload</artifactId>
                 <version>${commons.fileupload.version}</version>
             </dependency>
+            <!-- 编码解码 -->
             <dependency>
                 <groupId>commons-codec</groupId>
                 <artifactId>commons-codec</artifactId>
                 <version>${commons.codec.version}</version>
             </dependency>
+            <!-- 数据库连接池 -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${druid.version}</version>
             </dependency>
+            <!-- JSON -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
             </dependency>
+            <!-- 日期时间处理库 -->
             <dependency>
                 <groupId>joda-time</groupId>
                 <artifactId>joda-time</artifactId>
                 <version>${joda.time.version}</version>
             </dependency>
+            <!-- 超全工具库 -->
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
-                <version>${hutool.version}</version>
+                <version>5.6.7</version>
             </dependency>
+            <!-- api -->
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger2</artifactId>
@@ -160,11 +176,7 @@
                 <artifactId>springfox-swagger-ui</artifactId>
                 <version>${swagger.version}</version>
             </dependency>
-            <dependency>
-                <groupId>com.alibaba.spring.boot</groupId>
-                <artifactId>dubbo-spring-boot-starter</artifactId>
-                <version>${dubbo.spring.boot.starter}</version>
-            </dependency>
+
             <dependency>
                 <groupId>com.101tec</groupId>
                 <artifactId>zkclient</artifactId>
@@ -181,165 +193,46 @@
                 <artifactId>mybatisplus-spring-boot-starter</artifactId>
                 <version>${mybatisplus.spring.boot.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-aop</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context-support</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-configuration-processor</artifactId>
+                <optional>true</optional>
+            </dependency>
+            <dependency>
+                <groupId>commons-lang</groupId>
+                <artifactId>commons-lang</artifactId>
+                <version>${commons.lang.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons.io.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-spi</artifactId>
-            <version>${servlet.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context-support</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-            <version>${commons.lang.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>${commons.io.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.0</version>
-        </dependency>
-    </dependencies>
-
     <profiles>
-        <profile>
-            <id>develop</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <eshop.version>1.1.2-SNAPSHOT</eshop.version>
-            </properties>
-            <dependencyManagement>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.eshop</groupId>
-                        <artifactId>eshop-admin</artifactId>
-                        <version>${eshop.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>com.eshop</groupId>
-                        <artifactId>eshop-entity</artifactId>
-                        <version>${eshop.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>com.eshop</groupId>
-                        <artifactId>eshop-front</artifactId>
-                        <version>${eshop.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>com.eshop</groupId>
-                        <artifactId>eshop-service</artifactId>
-                        <version>${eshop.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>com.eshop</groupId>
-                        <artifactId>eshop-common</artifactId>
-                        <version>${eshop.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>com.eshop</groupId>
-                        <artifactId>eshop-datasources</artifactId>
-                        <version>${eshop.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>com.eshop</groupId>
-                        <artifactId>eshop-generator</artifactId>
-                        <version>${eshop.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>com.eshop</groupId>
-                        <artifactId>eshop-dao</artifactId>
-                        <version>${eshop.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>com.eshop</groupId>
-                        <artifactId>eshop-chatting</artifactId>
-                        <version>${eshop.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>com.eshop</groupId>
-                        <artifactId>eshop-live</artifactId>
-                        <version>${eshop.version}</version>
-                    </dependency>
-                </dependencies>
-            </dependencyManagement>
-        </profile>
-        <profile>
-            <id>master</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-            <properties>
-                <eshop.version>0.0.1-SNAPSHOT</eshop.version>
-            </properties>
-            <dependencyManagement>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.eshop</groupId>
-                        <artifactId>eshop-admin</artifactId>
-                        <version>${eshop.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>com.eshop</groupId>
-                        <artifactId>eshop-super</artifactId>
-                        <version>${eshop.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>com.eshop</groupId>
-                        <artifactId>eshop-web</artifactId>
-                        <version>${eshop.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>com.eshop</groupId>
-                        <artifactId>eshop-common</artifactId>
-                        <version>${eshop.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.apache.shiro</groupId>
-                        <artifactId>shiro-all</artifactId>
-                        <version>1.2.0</version>
-                    </dependency>
-                </dependencies>
-            </dependencyManagement>
-        </profile>
-
-
         <!--dev默认激活，使用idea Spring Boot 配置启动工程，需要dev的配置-->
         <profile>
             <id>dev</id>
@@ -367,6 +260,20 @@
     <build>
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <configuration>
+                        <fork>true</fork>
+                        <addResources>true</addResources>
+                        <excludes>
+                            <exclude>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
+                            </exclude>
+                        </excludes>
+                    </configuration>
+                </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
