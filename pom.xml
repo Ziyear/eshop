@@ -10,26 +10,26 @@
     <description>网上商城项目</description>
     <packaging>pom</packaging>
     <modules>
-        <module>eshop-common</module>
+        <module>eshop-eweb</module>
+        <module>eshop-eadmin</module>
+        <module>eshop-estore</module>
+        <module>eshop-lava</module>
         <module>eshop-getway</module>
-        <module>eshop-web</module>
-        <module>eshop-admin</module>
-        <module>eshop-store</module>
-        <module>eshop-order</module>
-        <module>eshop-order-spi</module>
-        <module>eshop-shoppingcart</module>
-        <module>eshop-shoppingcart-spi</module>
-        <module>eshop-commodity</module>
-        <module>eshop-commodity-spi</module>
         <module>eshop-sso</module>
         <module>eshop-sso-client</module>
         <module>eshop-sso-spi</module>
+        <module>eshop-commodity</module>
+        <module>eshop-commodity-spi</module>
+        <module>eshop-shoppingcart</module>
+        <module>eshop-shoppingcart-spi</module>
         <module>eshop-stock</module>
         <module>eshop-stock-spi</module>
         <module>eshop-price</module>
         <module>eshop-price-spi</module>
         <module>eshop-risk</module>
         <module>eshop-risk-spi</module>
+        <module>eshop-order</module>
+        <module>eshop-order-spi</module>
     </modules>
 
     <properties>
